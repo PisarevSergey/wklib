@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\deleters.h" />
+    <ClInclude Include="inc\os_version.h" />
     <ClInclude Include="inc\smart_pointers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp" />
+    <ClCompile Include="src\os_version.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9B91AAA6-078A-40AF-9AE5-470AA68A9672}</ProjectGuid>

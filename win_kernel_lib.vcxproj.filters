@@ -21,9 +21,15 @@
     <ClInclude Include="inc\deleters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\os_version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\os_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
