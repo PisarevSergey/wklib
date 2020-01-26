@@ -22,11 +22,13 @@
     <ClInclude Include="inc\aligning.h" />
     <ClInclude Include="inc\deleters.h" />
     <ClInclude Include="inc\os_version.h" />
+    <ClInclude Include="inc\safe_user_mode_data_access.h" />
     <ClInclude Include="inc\smart_pointers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp" />
     <ClCompile Include="src\os_version.cpp" />
+    <ClCompile Include="src\safe_user_mode_data_access.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9B91AAA6-078A-40AF-9AE5-470AA68A9672}</ProjectGuid>

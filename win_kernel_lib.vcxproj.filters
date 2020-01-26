@@ -27,12 +27,18 @@
     <ClInclude Include="inc\aligning.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\safe_user_mode_data_access.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\os_version.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\safe_user_mode_data_access.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
