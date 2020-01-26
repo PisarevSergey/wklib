@@ -4,28 +4,26 @@ NTSTATUS safe_user_mode_data_access::copy_data(void* destination_kernel_buffer,
   size_t destination_buffer_size,
   void* source_user_or_kernel_buffer,
   size_t source_buffer_size,
-  bool read_access,
+  bool user_mode_access,
+  bool check_for_read,
   ULONG alignment)
 {
-  NTSTATUS stat{STATUS_SUCCESS};
+  NTSTATUS stat{STATUS_UNSUCCESSFUL};
 
+  const bool valid_address{ user_mode_access ? is_valid_user_address(source_user_or_kernel_buffer, source_buffer_size, check_for_read, alignment) : true };
   __try
   {
-    if (UserMode == ExGetPreviousMode())
+    if (valid_address)
     {
-      if (read_access)
+      if (destination_buffer_size >= source_buffer_size)
       {
-        ProbeForRead(source_user_or_kernel_buffer, source_buffer_size, alignment);
+        RtlCopyMemory(destination_kernel_buffer, source_user_or_kernel_buffer, source_buffer_size);
+        stat = STATUS_SUCCESS;
       }
       else
       {
-        ProbeForRead(source_user_or_kernel_buffer, source_buffer_size, alignment);
+        stat = STATUS_INVALID_PARAMETER;
       }
-    }
-
-    if (destination_buffer_size >= source_buffer_size)
-    {
-      RtlCopyMemory(destination_kernel_buffer, source_user_or_kernel_buffer, source_buffer_size);
     }
     else
     {
@@ -41,7 +39,7 @@ NTSTATUS safe_user_mode_data_access::copy_data(void* destination_kernel_buffer,
 }
 
 bool safe_user_mode_data_access::is_valid_user_address(void* base,
-  ULONG size,
+  size_t size,
   bool check_for_read,
   ULONG alignment)
 {

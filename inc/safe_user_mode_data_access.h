@@ -8,11 +8,12 @@ namespace safe_user_mode_data_access
     size_t destination_buffer_size,
     void* source_user_or_kernel_buffer,
     size_t source_buffer_size,
-    bool read_access = true,
+    bool user_mode_access,
+    bool check_for_read = true,
     ULONG alignment = 1);
 
   bool is_valid_user_address(void* base,
-    ULONG size,
+    size_t size,
     bool check_for_read = true,
     ULONG alignment = 1);
 }
