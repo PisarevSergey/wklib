@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\aligning.h" />
     <ClInclude Include="inc\deleters.h" />
     <ClInclude Include="inc\os_version.h" />
     <ClInclude Include="inc\smart_pointers.h" />
