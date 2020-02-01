@@ -1,6 +1,6 @@
 #include <safe_user_mode_data_access.h>
 
-NTSTATUS safe_user_mode_data_access::copy_data(void* destination_kernel_buffer,
+NTSTATUS win_kernel_lib::safe_user_mode_data_access::copy_data(void* destination_kernel_buffer,
   size_t destination_buffer_size,
   void* source_user_or_kernel_buffer,
   size_t source_buffer_size,
@@ -38,7 +38,7 @@ NTSTATUS safe_user_mode_data_access::copy_data(void* destination_kernel_buffer,
   return stat;
 }
 
-bool safe_user_mode_data_access::is_valid_user_address(void* base,
+bool win_kernel_lib::safe_user_mode_data_access::is_valid_user_address(void* base,
   size_t size,
   bool check_for_read,
   ULONG alignment)
