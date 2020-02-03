@@ -30,6 +30,9 @@
     <ClInclude Include="inc\safe_user_mode_data_access.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\avl_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp">

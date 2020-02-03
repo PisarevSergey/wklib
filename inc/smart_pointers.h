@@ -10,13 +10,13 @@ namespace win_kernel_lib
     class auto_pointer
     {
     public:
-      explicit auto_pointer(T* object = nullptr) : ptr{ object }
+      explicit auto_pointer(T* object = nullptr) noexcept : ptr{ object }
       {}
 
-      auto_pointer(deleter_type dltr, T* object = nullptr) : del_obj{ dltr }, ptr{ object }
+      auto_pointer(deleter_type dltr, T* object = nullptr) noexcept : del_obj{ dltr }, ptr{ object }
       {}
 
-      ~auto_pointer()
+      ~auto_pointer() noexcept
       {
         del_obj(ptr);
         ptr = nullptr;
@@ -25,14 +25,14 @@ namespace win_kernel_lib
       auto_pointer(const auto_pointer&) = delete;
       auto_pointer& operator=(const auto_pointer&) = delete;
 
-      auto_pointer(auto_pointer&& src)
+      auto_pointer(auto_pointer&& src) noexcept
       {
         del_obj(ptr);
         ptr = src.ptr;
         src.ptr = nullptr;
       }
 
-      auto_pointer& operator=(auto_pointer&& src)
+      auto_pointer& operator=(auto_pointer&& src) noexcept
       {
         if (&src != this)
         {
@@ -44,7 +44,7 @@ namespace win_kernel_lib
         return *this;
       }
 
-      void reset(T* new_ptr = nullptr)
+      void reset(T* new_ptr = nullptr) noexcept
       {
         if (new_ptr != ptr)
         {
@@ -53,12 +53,12 @@ namespace win_kernel_lib
         }
       }
 
-      T* get()
+      T* get() noexcept
       {
         return ptr;
       }
 
-      T* operator->()
+      T* operator->() noexcept
       {
         return ptr;
       }
