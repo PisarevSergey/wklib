@@ -33,6 +33,12 @@
     <ClInclude Include="inc\avl_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\unicode_strings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\win_kernel_lib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp">
@@ -42,6 +48,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\safe_user_mode_data_access.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\unicode_strings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win_kernel_lib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

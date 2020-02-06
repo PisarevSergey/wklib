@@ -1,7 +1,5 @@
 #pragma once
 
-#include <wdm.h>
-
 namespace win_kernel_lib
 {
   namespace safe_user_mode_data_access

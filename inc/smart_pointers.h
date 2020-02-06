@@ -1,7 +1,5 @@
 #pragma once
 
-#include <deleters.h>
-
 namespace win_kernel_lib
 {
   namespace smart_pointers
@@ -27,18 +25,16 @@ namespace win_kernel_lib
 
       auto_pointer(auto_pointer&& src) noexcept
       {
-        del_obj(ptr);
-        ptr = src.ptr;
-        src.ptr = nullptr;
+        free();
+        move(src);
       }
 
       auto_pointer& operator=(auto_pointer&& src) noexcept
       {
         if (&src != this)
         {
-          del_obj(ptr);
-          ptr = src.ptr;
-          src.ptr = nullptr;
+          free();
+          move(src);
         }
 
         return *this;
@@ -48,9 +44,16 @@ namespace win_kernel_lib
       {
         if (new_ptr != ptr)
         {
-          del_obj(ptr);
+          free();
           ptr = new_ptr;
         }
+      }
+
+      T* release() noexcept
+      {
+        T* tmp{ ptr };
+        ptr = nullptr;
+        return tmp;
       }
 
       T* get() noexcept
@@ -61,6 +64,25 @@ namespace win_kernel_lib
       T* operator->() noexcept
       {
         return ptr;
+      }
+
+    private:
+      void free()
+      {
+        if (ptr)
+        {
+          del_obj(ptr);
+          ptr = nullptr;
+        }
+      }
+
+      void move(auto_pointer&& src)
+      {
+        ptr = src.ptr;
+        del_obj = src.del_obj;
+
+        src.ptr = nullptr;
+        src.del_obj = del_obj{};
       }
 
     private:

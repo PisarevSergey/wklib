@@ -1,4 +1,4 @@
-#include <os_version.h>
+#include <win_kernel_lib.h>
 
 win_kernel_lib::os_version::version::version()
 {

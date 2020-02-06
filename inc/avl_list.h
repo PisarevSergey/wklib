@@ -1,7 +1,5 @@
 #pragma once
 
-#include <ntddk.h>
-
 namespace win_kernel_lib
 {
   namespace avl_list_facility

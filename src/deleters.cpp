@@ -1,5 +1,4 @@
-#include <wdm.h>
-#include <deleters.h>
+#include <win_kernel_lib.h>
 
 void win_kernel_lib::deleters::pool_deleter::operator()(void* p)
 {
