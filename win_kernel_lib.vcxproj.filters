@@ -39,6 +39,12 @@
     <ClInclude Include="inc\win_kernel_lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\locks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\custom_string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp">
@@ -54,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\win_kernel_lib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\locks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\custom_string.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

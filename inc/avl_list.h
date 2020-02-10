@@ -46,13 +46,13 @@ namespace win_kernel_lib
 
       static void free(RTL_AVL_TABLE*, void* p)
       {
-        T* object{static_cast<char*>(p) + sizeof(RTL_BALANCED_LINKS)};
+        T* object{static_cast<T*>(Add2Ptr(p, sizeof(RTL_BALANCED_LINKS)))};
         object->~T();
 
         custom_free(p);
       }
 
-      RTL_GENERIC_COMPARE_RESULTS comp(RTL_AVL_TABLE*,
+      static RTL_GENERIC_COMPARE_RESULTS comp(RTL_AVL_TABLE*,
         void* first,
         void* second)
       {

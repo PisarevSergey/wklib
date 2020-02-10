@@ -30,3 +30,19 @@ UNICODE_STRING* win_kernel_lib::unicode_strings::createStringCopy(const wchar_t*
 
   return createStringCopy(source, tag, pt);
 }
+
+UNICODE_STRING* win_kernel_lib::unicode_strings::createStringCopy(const wchar_t* null_terminated_src,
+  ULONG tag,
+  POOL_TYPE pt)
+{
+  UNICODE_STRING* str{ nullptr };
+
+  size_t size{ 0 };
+  NTSTATUS stat = RtlStringCbLengthW(null_terminated_src, MAXUSHORT, &size);
+  if (NT_SUCCESS(stat))
+  {
+    str = createStringCopy(null_terminated_src, size, tag, pt);
+  }
+
+  return str;
+}

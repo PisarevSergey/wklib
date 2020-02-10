@@ -22,16 +22,20 @@
     <ClInclude Include="inc\aligning.h" />
     <ClInclude Include="inc\avl_list.h" />
     <ClInclude Include="inc\deleters.h" />
+    <ClInclude Include="inc\locks.h" />
     <ClInclude Include="inc\os_version.h" />
     <ClInclude Include="inc\safe_user_mode_data_access.h" />
     <ClInclude Include="inc\smart_pointers.h" />
+    <ClInclude Include="inc\custom_string.h" />
     <ClInclude Include="inc\unicode_strings.h" />
     <ClInclude Include="inc\win_kernel_lib.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp" />
+    <ClCompile Include="src\locks.cpp" />
     <ClCompile Include="src\os_version.cpp" />
     <ClCompile Include="src\safe_user_mode_data_access.cpp" />
+    <ClCompile Include="src\custom_string.cpp" />
     <ClCompile Include="src\unicode_strings.cpp" />
     <ClCompile Include="src\win_kernel_lib.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

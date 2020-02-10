@@ -61,7 +61,17 @@ namespace win_kernel_lib
         return ptr;
       }
 
+      const T* get() const noexcept
+      {
+        return ptr;
+      }
+
       T* operator->() noexcept
+      {
+        return ptr;
+      }
+
+      const T* operator->() const noexcept
       {
         return ptr;
       }
