@@ -45,6 +45,9 @@
     <ClInclude Include="inc\custom_string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\pointer_mainpulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp">
