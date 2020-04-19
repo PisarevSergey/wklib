@@ -4,36 +4,68 @@ namespace win_kernel_lib
 {
   namespace avl_list_facility
   {
-    using allocate_routine = void* (*)(CLONG size);
-    using free_routine = void (*)(void*);
-
     template <typename T,
-      allocate_routine custom_alloc,
-      free_routine custom_free>
+      typename entry_allocator_type>
     class avl_list  //list of pointers to objects
     {
     public:
       using stored_item_type = T*;
 
-      avl_list()
+      //avl_list() : allocator{ nullptr }, initialized{false}
+      //{
+      //  RtlZeroMemory(&table, sizeof(table));
+      //}
+
+      avl_list(entry_allocator_type* allocator_param) : allocator{ allocator_param }/*, initialized{true}*/
       {
-        RtlInitializeGenericTableAvl(&table, comp, alloc, free, nullptr);
+        ASSERT(allocator);
+
+        RtlInitializeGenericTableAvl(&table, comp, alloc, free, this);
       }
 
       ~avl_list()
       {
-        while (auto e{ get_element_by_number(0) })
+        //if (initialized)
         {
-          delete_entry(e);
+          clear();
+
+          allocator = nullptr;
         }
       }
 
-      bool insert(stored_item_type item) // copy of pointer to object
-      {
-        BOOLEAN inserted;
-        RtlInsertElementGenericTableAvl(&table, &item, sizeof(item), &inserted);
+      //void initialize(entry_allocator_type* allocator_param)
+      //{
+      //  ASSERT(allocator_param);
 
-        return (inserted ? true : false);
+      //  allocator = allocator_param;
+      //  RtlInitializeGenericTableAvl(&table, comp, alloc, free, this);
+
+      //  initialized = true;
+      //}
+
+      stored_item_type* insert(stored_item_type item_to_insert, bool& inserted_as_new_element) // copy of pointer to object
+      {
+        stored_item_type* entry{ nullptr };
+        inserted_as_new_element = false;
+
+        if (item_to_insert)
+        {
+          BOOLEAN inserted;
+          entry = static_cast<stored_item_type*>(RtlInsertElementGenericTableAvl(&table,
+            &item_to_insert,
+            sizeof(item_to_insert), &inserted));
+          if (entry)
+          {
+            ASSERT(*entry);
+
+            if (inserted)
+            {
+              inserted_as_new_element = true;
+            }
+          }
+        }
+
+        return entry;
       }
 
       stored_item_type* get_element_by_key(stored_item_type key_entry)
@@ -41,17 +73,27 @@ namespace win_kernel_lib
         return static_cast<stored_item_type*>(RtlLookupElementGenericTableAvl(&table, &key_entry));
       }
 
-      static void* alloc(RTL_AVL_TABLE*, CLONG size)
+      void clear()
       {
-        return custom_alloc(size);
+        //ASSERT(true == initialized);
+
+        while (auto e{ get_element_by_number(0) })
+        {
+          delete_entry(e);
+        }
       }
 
-      static void free(RTL_AVL_TABLE*, void* p)
+      static void* alloc(RTL_AVL_TABLE* table_param, CLONG size)
+      {
+        return static_cast<avl_list*>(table_param->TableContext)->allocator->allocate(size);
+      }
+
+      static void free(RTL_AVL_TABLE* table_param, void* p)
       {
         stored_item_type* entry{ static_cast<stored_item_type*>(Add2Ptr(p, sizeof(RTL_BALANCED_LINKS))) };
         delete *entry;
 
-        custom_free(p);
+        static_cast<avl_list*>(table_param->TableContext)->allocator->deallocate(p);
       }
 
       static RTL_GENERIC_COMPARE_RESULTS comp(RTL_AVL_TABLE*,
@@ -88,6 +130,8 @@ namespace win_kernel_lib
 
     private:
       RTL_AVL_TABLE table;
+      entry_allocator_type* allocator;
+      //bool initialized;
     };
   }
 }

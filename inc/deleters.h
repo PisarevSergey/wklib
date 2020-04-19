@@ -19,6 +19,7 @@ namespace win_kernel_lib
     {
     public:
       void operator()(void* p);
+      void operator()(const void* p);
     };
   }
 }

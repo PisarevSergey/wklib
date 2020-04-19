@@ -48,7 +48,7 @@ namespace win_kernel_lib
     public:
       explicit auto_exclusive_rw_lock(T& lock_param) : auto_rw_lock{ lock_param }
       {
-        lock.exclusive();
+        lock.lock_exclusive();
       }
     };
   }
