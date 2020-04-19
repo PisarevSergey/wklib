@@ -5,7 +5,7 @@ namespace win_kernel_lib
   namespace deleters
   {
     template <typename T>
-    class default_deleter_object
+    class default_deleter
     {
     public:
       void operator()(T* ptr)
@@ -13,7 +13,6 @@ namespace win_kernel_lib
         delete ptr;
       }
     };
-
 
     class pool_deleter
     {

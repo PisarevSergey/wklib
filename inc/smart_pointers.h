@@ -4,7 +4,7 @@ namespace win_kernel_lib
 {
   namespace smart_pointers
   {
-    template <typename T, typename deleter_type = win_kernel_lib::deleters::default_deleter_object<T>>
+    template <typename T, typename deleter_type = win_kernel_lib::deleters::default_deleter<T>>
     class auto_pointer
     {
     public:
