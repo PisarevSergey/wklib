@@ -5,7 +5,8 @@ namespace win_kernel_lib
   namespace avl_list_facility
   {
     template <typename T,
-      typename entry_allocator_type>
+      typename list_entry_allocator_type,
+      typename entry_deleter>
     class avl_list  //list of pointers to objects
     {
     public:
@@ -16,7 +17,7 @@ namespace win_kernel_lib
       //  RtlZeroMemory(&table, sizeof(table));
       //}
 
-      avl_list(entry_allocator_type* allocator_param) : allocator{ allocator_param }/*, initialized{true}*/
+      avl_list(list_entry_allocator_type* allocator_param) : allocator{ allocator_param }/*, initialized{true}*/
       {
         ASSERT(allocator);
 
@@ -91,7 +92,7 @@ namespace win_kernel_lib
       static void free(RTL_AVL_TABLE* table_param, void* p)
       {
         stored_item_type* entry{ static_cast<stored_item_type*>(Add2Ptr(p, sizeof(RTL_BALANCED_LINKS))) };
-        delete *entry;
+        static_cast<avl_list*>(table_param->TableContext)->deleter(*entry);
 
         static_cast<avl_list*>(table_param->TableContext)->allocator->deallocate(p);
       }
@@ -130,7 +131,8 @@ namespace win_kernel_lib
 
     private:
       RTL_AVL_TABLE table;
-      entry_allocator_type* allocator;
+      list_entry_allocator_type* allocator;
+      entry_deleter deleter;
       //bool initialized;
     };
   }

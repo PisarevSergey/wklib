@@ -27,7 +27,10 @@ namespace win_kernel_lib
     public:
       void operator()(T* obj)
       {
-        obj->dereference();
+        if (obj)
+        {
+          obj->dereference();
+        }
       }
     };
   }

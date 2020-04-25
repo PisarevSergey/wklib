@@ -25,6 +25,7 @@
     <ClInclude Include="inc\locks.h" />
     <ClInclude Include="inc\os_version.h" />
     <ClInclude Include="inc\pointer_mainpulation.h" />
+    <ClInclude Include="inc\refconunted_object_base.h" />
     <ClInclude Include="inc\safe_user_mode_data_access.h" />
     <ClInclude Include="inc\smart_pointers.h" />
     <ClInclude Include="inc\custom_string.h" />

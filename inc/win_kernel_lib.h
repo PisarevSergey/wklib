@@ -14,3 +14,4 @@
 #include <locks.h>
 #include <custom_string.h>
 #include <pointer_mainpulation.h>
+#include <refconunted_object_base.h>

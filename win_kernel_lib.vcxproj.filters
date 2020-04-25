@@ -48,6 +48,9 @@
     <ClInclude Include="inc\pointer_mainpulation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\refconunted_object_base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp">

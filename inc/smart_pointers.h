@@ -42,11 +42,8 @@ namespace win_kernel_lib
 
       void reset(T* new_ptr = nullptr) noexcept
       {
-        if (new_ptr != ptr)
-        {
-          free();
-          ptr = new_ptr;
-        }
+        free();
+        ptr = new_ptr;
       }
 
       T* release() noexcept
