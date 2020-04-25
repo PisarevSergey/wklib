@@ -21,11 +21,18 @@ namespace win_kernel_lib
           deleter_object(static_cast<derived_class*>(this));
         }
       }
+
+      void* operator new(size_t) = delete;
+      void operator delete(void*) = delete;
     protected:
-      virtual ~base() {}
+      virtual ~base() = 0;
     private:
       deleter deleter_object;
       volatile LONG64 refcount{1};
     };
+
+    //template <typename derived_class, typename deleter>
+    //base<derived_class, deleter>::~base()
+    //{}
   }
 }
