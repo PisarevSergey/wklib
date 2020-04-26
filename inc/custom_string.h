@@ -36,9 +36,8 @@ namespace win_kernel_lib
       operator bool() const { return us.get() ? true : false; }
 
       void* __cdecl operator new(size_t sz, POOL_TYPE pt, ULONG tag) noexcept;
-      void __cdecl operator delete(void* p) noexcept;
-
       void* __cdecl operator new(size_t, void* p) noexcept;
+      void __cdecl operator delete(void* p) noexcept;
 
       friend bool operator<(const string& s1, const string& s2) noexcept;
       friend bool operator>(const string& s1, const string& s2) noexcept;

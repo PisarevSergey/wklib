@@ -31,8 +31,8 @@ namespace win_kernel_lib
       volatile LONG64 refcount{1};
     };
 
-    //template <typename derived_class, typename deleter>
-    //base<derived_class, deleter>::~base()
-    //{}
+    template <typename derived_class, typename deleter>
+    base<derived_class, deleter>::~base()
+    {}
   }
 }
