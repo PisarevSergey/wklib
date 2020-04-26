@@ -32,6 +32,7 @@ namespace win_kernel_lib
       string& operator=(string&& src) noexcept;
 
       void reset(UNICODE_STRING* new_string) noexcept; //move
+      UNICODE_STRING* release() { return us.release(); }
 
       operator bool() const { return us.get() ? true : false; }
 
