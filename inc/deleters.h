@@ -33,5 +33,11 @@ namespace win_kernel_lib
         }
       }
     };
+
+    class fltmgr_context_deleter
+    {
+    public:
+      void operator()(void* context);
+    };
   }
 }
