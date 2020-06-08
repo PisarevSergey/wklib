@@ -51,5 +51,15 @@ namespace win_kernel_lib
         lock.lock_exclusive();
       }
     };
+
+    class mutex
+    {
+    public:
+      mutex();
+      void lock();
+      void unlock();
+    private:
+      KMUTEX mtx;
+    };
   }
 }
