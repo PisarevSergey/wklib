@@ -30,7 +30,7 @@
     <ClInclude Include="inc\smart_pointers.h" />
     <ClInclude Include="inc\custom_string.h" />
     <ClInclude Include="inc\unicode_strings.h" />
-    <ClInclude Include="inc\win_kernel_lib.h" />
+    <ClInclude Include="inc\wklib.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp" />
@@ -39,7 +39,7 @@
     <ClCompile Include="src\safe_user_mode_data_access.cpp" />
     <ClCompile Include="src\custom_string.cpp" />
     <ClCompile Include="src\unicode_strings.cpp" />
-    <ClCompile Include="src\win_kernel_lib.cpp">
+    <ClCompile Include="src\wklib.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -53,7 +53,7 @@
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <Configuration>Debug</Configuration>
     <Platform Condition="'$(Platform)' == ''">Win32</Platform>
-    <RootNamespace>win_kernel_lib</RootNamespace>
+    <RootNamespace>wklib</RootNamespace>
     <DriverType>KMDF</DriverType>
     <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -99,19 +99,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>tmp\$(ConfigurationName)\$(PlatformShortName)\</IntDir>
-    <OutDir>..\win_ke_lib_out\$(ConfigurationName)\$(PlatformShortName)\</OutDir>
+    <OutDir>..\lib\$(ConfigurationName)\$(PlatformShortName)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>tmp\$(ConfigurationName)\$(PlatformShortName)\</IntDir>
-    <OutDir>..\win_ke_lib_out\$(ConfigurationName)\$(PlatformShortName)\</OutDir>
+    <OutDir>..\lib\$(ConfigurationName)\$(PlatformShortName)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>tmp\$(ConfigurationName)\$(PlatformShortName)\</IntDir>
-    <OutDir>..\win_ke_lib_out\$(ConfigurationName)\$(PlatformShortName)\</OutDir>
+    <OutDir>..\lib\$(ConfigurationName)\$(PlatformShortName)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>tmp\$(ConfigurationName)\$(PlatformShortName)\</IntDir>
-    <OutDir>..\win_ke_lib_out\$(ConfigurationName)\$(PlatformShortName)\</OutDir>
+    <OutDir>..\lib\$(ConfigurationName)\$(PlatformShortName)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -119,7 +119,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(ProjectDir)inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>win_kernel_lib.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>wklib.h</PrecompiledHeaderFile>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -127,7 +127,7 @@
       <PreprocessorDefinitions>WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP;WINAPI_PARTITION_DESKTOP=1;WINAPI_PARTITION_SYSTEM=1;WINAPI_PARTITION_APP=1;WINAPI_PARTITION_PC_APP=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>win_kernel_lib.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>wklib.h</PrecompiledHeaderFile>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -136,7 +136,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(ProjectDir)inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>win_kernel_lib.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>wklib.h</PrecompiledHeaderFile>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,7 +144,7 @@
       <PreprocessorDefinitions>WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP;WINAPI_PARTITION_DESKTOP=1;WINAPI_PARTITION_SYSTEM=1;WINAPI_PARTITION_APP=1;WINAPI_PARTITION_PC_APP=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)inc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>win_kernel_lib.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>wklib.h</PrecompiledHeaderFile>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

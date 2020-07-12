@@ -1,4 +1,4 @@
-#include <win_kernel_lib.h>
+#include <wklib.h>
 
 NTSTATUS win_kernel_lib::safe_user_mode_data_access::copy_data(void* destination_kernel_buffer,
   size_t destination_buffer_size,

@@ -36,9 +36,6 @@
     <ClInclude Include="inc\unicode_strings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\win_kernel_lib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="inc\locks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -49,6 +46,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inc\refconunted_object_base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\wklib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,13 +65,13 @@
     <ClCompile Include="src\unicode_strings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\win_kernel_lib.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\locks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\custom_string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wklib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

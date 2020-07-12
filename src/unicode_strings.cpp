@@ -1,4 +1,4 @@
-#include <win_kernel_lib.h>
+#include <wklib.h>
 
 UNICODE_STRING* win_kernel_lib::unicode_strings::createStringCopy(const UNICODE_STRING& src,
   ULONG tag,
