@@ -1,10 +1,10 @@
 #pragma once
 
-namespace win_kernel_lib
+namespace wklib
 {
   namespace refcounted_object
   {
-    template <typename derived_class, typename deleter = win_kernel_lib::deleters::default_deleter<derived_class>>
+    template <typename derived_class, typename deleter = wklib::deleters::default_deleter<derived_class>>
     class base
     {
     public:

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace win_kernel_lib
+namespace wklib
 {
   namespace avl_list_facility
   {

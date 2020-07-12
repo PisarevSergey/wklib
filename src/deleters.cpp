@@ -1,6 +1,6 @@
 #include <wklib.h>
 
-void win_kernel_lib::deleters::pool_deleter::operator()(void* p)
+void wklib::deleters::pool_deleter::operator()(void* p)
 {
   if (p)
   {
@@ -8,7 +8,7 @@ void win_kernel_lib::deleters::pool_deleter::operator()(void* p)
   }
 }
 
-void win_kernel_lib::deleters::pool_deleter::operator()(const void* p)
+void wklib::deleters::pool_deleter::operator()(const void* p)
 {
   if (p)
   {
@@ -16,7 +16,7 @@ void win_kernel_lib::deleters::pool_deleter::operator()(const void* p)
   }
 }
 
-void win_kernel_lib::deleters::fltmgr_context_deleter::operator()(void* context)
+void wklib::deleters::fltmgr_context_deleter::operator()(void* context)
 {
   if (context)
   {

@@ -1,10 +1,10 @@
 #pragma once
 
-namespace win_kernel_lib
+namespace wklib
 {
   namespace smart_pointers
   {
-    template <typename T, typename deleter_type = win_kernel_lib::deleters::default_deleter<T>>
+    template <typename T, typename deleter_type = wklib::deleters::default_deleter<T>>
     class auto_pointer
     {
     public:

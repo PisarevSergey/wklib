@@ -1,6 +1,6 @@
 #include <wklib.h>
 
-UNICODE_STRING* win_kernel_lib::unicode_strings::createStringCopy(const UNICODE_STRING& src,
+UNICODE_STRING* wklib::unicode_strings::createStringCopy(const UNICODE_STRING& src,
   ULONG tag,
   POOL_TYPE pt)
 {
@@ -19,7 +19,7 @@ UNICODE_STRING* win_kernel_lib::unicode_strings::createStringCopy(const UNICODE_
   return new_string;
 }
 
-UNICODE_STRING* win_kernel_lib::unicode_strings::createStringCopy(const wchar_t* src,
+UNICODE_STRING* wklib::unicode_strings::createStringCopy(const wchar_t* src,
   size_t src_size_in_bytes,
   ULONG tag,
   POOL_TYPE pt)
@@ -31,7 +31,7 @@ UNICODE_STRING* win_kernel_lib::unicode_strings::createStringCopy(const wchar_t*
   return createStringCopy(source, tag, pt);
 }
 
-UNICODE_STRING* win_kernel_lib::unicode_strings::createStringCopy(const wchar_t* null_terminated_src,
+UNICODE_STRING* wklib::unicode_strings::createStringCopy(const wchar_t* null_terminated_src,
   ULONG tag,
   POOL_TYPE pt)
 {

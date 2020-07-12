@@ -1,6 +1,6 @@
 #pragma once
 
-namespace win_kernel_lib
+namespace wklib
 {
   namespace string_facility
   {
@@ -44,7 +44,7 @@ namespace win_kernel_lib
       friend bool operator>(const string& s1, const string& s2) noexcept;
 
     private:
-      win_kernel_lib::smart_pointers::auto_pointer<UNICODE_STRING, win_kernel_lib::deleters::pool_deleter> us;
+      wklib::smart_pointers::auto_pointer<UNICODE_STRING, wklib::deleters::pool_deleter> us;
     };
 
     bool operator<(const string& s1, const string& s2) noexcept;

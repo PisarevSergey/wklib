@@ -1,6 +1,6 @@
 #pragma once
 
-namespace win_kernel_lib
+namespace wklib
 {
   namespace safe_user_mode_data_access
   {

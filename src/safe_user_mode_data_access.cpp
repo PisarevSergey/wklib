@@ -1,6 +1,6 @@
 #include <wklib.h>
 
-NTSTATUS win_kernel_lib::safe_user_mode_data_access::copy_data(void* destination_kernel_buffer,
+NTSTATUS wklib::safe_user_mode_data_access::copy_data(void* destination_kernel_buffer,
   size_t destination_buffer_size,
   void* source_user_or_kernel_buffer,
   size_t source_buffer_size,
@@ -38,7 +38,7 @@ NTSTATUS win_kernel_lib::safe_user_mode_data_access::copy_data(void* destination
   return stat;
 }
 
-bool win_kernel_lib::safe_user_mode_data_access::is_valid_user_address(void* base,
+bool wklib::safe_user_mode_data_access::is_valid_user_address(void* base,
   size_t size,
   bool check_for_read,
   ULONG alignment)
