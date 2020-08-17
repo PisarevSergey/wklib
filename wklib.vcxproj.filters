@@ -51,6 +51,9 @@
     <ClInclude Include="inc\wklib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\lookaside_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp">
@@ -72,6 +75,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\wklib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lookaside_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
