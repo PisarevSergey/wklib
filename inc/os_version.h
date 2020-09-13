@@ -2,19 +2,19 @@
 
 namespace wklib
 {
-  namespace os_version
-  {
-    class version
+    namespace os_version
     {
-    public:
-      version();
+        class version
+        {
+        public:
+            version();
 
-      bool is_win7_plus() const;
-      bool is_win8_plus() const;
-      bool is_win8_1_plus() const;
-      bool is_win10_plus() const;
-    private:
-      RTL_OSVERSIONINFOW ver_info;
-    };
-  }
+            bool is_win7_plus() const;
+            bool is_win8_plus() const;
+            bool is_win8_1_plus() const;
+            bool is_win10_plus() const;
+        private:
+            RTL_OSVERSIONINFOW ver_info;
+        };
+    }
 }

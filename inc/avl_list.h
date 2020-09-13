@@ -2,140 +2,140 @@
 
 namespace wklib
 {
-  namespace avl_list_facility
-  {
-    template <typename T,
-      typename list_entry_allocator_type,
-      typename entry_deleter>
-    class avl_list  //list of pointers to objects
+    namespace avl_list_facility
     {
-    public:
-      using stored_item_type = T*;
-
-      //avl_list() : allocator{ nullptr }, initialized{false}
-      //{
-      //  RtlZeroMemory(&table, sizeof(table));
-      //}
-
-      avl_list(list_entry_allocator_type* allocator_param) : allocator{ allocator_param }/*, initialized{true}*/
-      {
-        ASSERT(allocator);
-
-        RtlInitializeGenericTableAvl(&table, comp, alloc, free, this);
-      }
-
-      ~avl_list()
-      {
-        //if (initialized)
+        template <typename T,
+            typename list_entry_allocator_type,
+            typename entry_deleter>
+            class avl_list  //list of pointers to objects
         {
-          clear();
+        public:
+            using stored_item_type = T*;
 
-          allocator = nullptr;
-        }
-      }
+            //avl_list() : allocator{ nullptr }, initialized{false}
+            //{
+            //  RtlZeroMemory(&table, sizeof(table));
+            //}
 
-      //void initialize(entry_allocator_type* allocator_param)
-      //{
-      //  ASSERT(allocator_param);
-
-      //  allocator = allocator_param;
-      //  RtlInitializeGenericTableAvl(&table, comp, alloc, free, this);
-
-      //  initialized = true;
-      //}
-
-      stored_item_type* insert(stored_item_type item_to_insert, bool& inserted_as_new_element) // copy of pointer to object
-      {
-        stored_item_type* entry{ nullptr };
-        inserted_as_new_element = false;
-
-        if (item_to_insert)
-        {
-          BOOLEAN inserted;
-          entry = static_cast<stored_item_type*>(RtlInsertElementGenericTableAvl(&table,
-            &item_to_insert,
-            sizeof(item_to_insert), &inserted));
-          if (entry)
-          {
-            ASSERT(*entry);
-
-            if (inserted)
+            avl_list(list_entry_allocator_type* allocator_param) : allocator{ allocator_param }/*, initialized{true}*/
             {
-              inserted_as_new_element = true;
+                ASSERT(allocator);
+
+                RtlInitializeGenericTableAvl(&table, comp, alloc, free, this);
             }
-          }
-        }
 
-        return entry;
-      }
+            ~avl_list()
+            {
+                //if (initialized)
+                {
+                    clear();
 
-      stored_item_type* get_element_by_key(stored_item_type key_entry)
-      {
-        return static_cast<stored_item_type*>(RtlLookupElementGenericTableAvl(&table, &key_entry));
-      }
+                    allocator = nullptr;
+                }
+            }
 
-      void clear()
-      {
-        //ASSERT(true == initialized);
+            //void initialize(entry_allocator_type* allocator_param)
+            //{
+            //  ASSERT(allocator_param);
 
-        while (auto e{ get_element_by_number(0) })
-        {
-          delete_entry(e);
-        }
-      }
+            //  allocator = allocator_param;
+            //  RtlInitializeGenericTableAvl(&table, comp, alloc, free, this);
 
-      static void* alloc(RTL_AVL_TABLE* table_param, CLONG size)
-      {
-        return static_cast<avl_list*>(table_param->TableContext)->allocator->allocate(size);
-      }
+            //  initialized = true;
+            //}
 
-      static void free(RTL_AVL_TABLE* table_param, void* p)
-      {
-        stored_item_type* entry{ static_cast<stored_item_type*>(Add2Ptr(p, sizeof(RTL_BALANCED_LINKS))) };
-        static_cast<avl_list*>(table_param->TableContext)->deleter(*entry);
+            stored_item_type* insert(stored_item_type item_to_insert, bool& inserted_as_new_element) // copy of pointer to object
+            {
+                stored_item_type* entry{ nullptr };
+                inserted_as_new_element = false;
 
-        static_cast<avl_list*>(table_param->TableContext)->allocator->deallocate(p);
-      }
+                if (item_to_insert)
+                {
+                    BOOLEAN inserted;
+                    entry = static_cast<stored_item_type*>(RtlInsertElementGenericTableAvl(&table,
+                        &item_to_insert,
+                        sizeof(item_to_insert), &inserted));
+                    if (entry)
+                    {
+                        ASSERT(*entry);
 
-      static RTL_GENERIC_COMPARE_RESULTS comp(RTL_AVL_TABLE*,
-        void* first,
-        void* second)
-      {
-        auto result{ GenericEqual };
+                        if (inserted)
+                        {
+                            inserted_as_new_element = true;
+                        }
+                    }
+                }
 
-        stored_item_type* first_object{ static_cast<stored_item_type*>(first) };
-        stored_item_type* second_object{ static_cast<stored_item_type*>(second) };
+                return entry;
+            }
 
-        if (**first_object < **second_object)
-        {
-          result = GenericLessThan;
-        }
-        else if (**first_object > **second_object)
-        {
-          result = GenericGreaterThan;
-        }
+            stored_item_type* get_element_by_key(stored_item_type key_entry)
+            {
+                return static_cast<stored_item_type*>(RtlLookupElementGenericTableAvl(&table, &key_entry));
+            }
 
-        return result;
-      }
+            void clear()
+            {
+                //ASSERT(true == initialized);
 
-    private:
-      stored_item_type* get_element_by_number(ULONG num)
-      {
-        return static_cast<stored_item_type*>(RtlGetElementGenericTableAvl(&table, num));
-      }
+                while (auto e{ get_element_by_number(0) })
+                {
+                    delete_entry(e);
+                }
+            }
 
-      void delete_entry(stored_item_type* entry)
-      {
-        RtlDeleteElementGenericTableAvl(&table, entry);
-      }
+            static void* alloc(RTL_AVL_TABLE* table_param, CLONG size)
+            {
+                return static_cast<avl_list*>(table_param->TableContext)->allocator->allocate(size);
+            }
 
-    private:
-      RTL_AVL_TABLE table;
-      list_entry_allocator_type* allocator;
-      entry_deleter deleter;
-      //bool initialized;
-    };
-  }
+            static void free(RTL_AVL_TABLE* table_param, void* p)
+            {
+                stored_item_type* entry{ static_cast<stored_item_type*>(Add2Ptr(p, sizeof(RTL_BALANCED_LINKS))) };
+                static_cast<avl_list*>(table_param->TableContext)->deleter(*entry);
+
+                static_cast<avl_list*>(table_param->TableContext)->allocator->deallocate(p);
+            }
+
+            static RTL_GENERIC_COMPARE_RESULTS comp(RTL_AVL_TABLE*,
+                void* first,
+                void* second)
+            {
+                auto result{ GenericEqual };
+
+                stored_item_type* first_object{ static_cast<stored_item_type*>(first) };
+                stored_item_type* second_object{ static_cast<stored_item_type*>(second) };
+
+                if (**first_object < **second_object)
+                {
+                    result = GenericLessThan;
+                }
+                else if (**first_object > * *second_object)
+                {
+                    result = GenericGreaterThan;
+                }
+
+                return result;
+            }
+
+        private:
+            stored_item_type* get_element_by_number(ULONG num)
+            {
+                return static_cast<stored_item_type*>(RtlGetElementGenericTableAvl(&table, num));
+            }
+
+            void delete_entry(stored_item_type* entry)
+            {
+                RtlDeleteElementGenericTableAvl(&table, entry);
+            }
+
+        private:
+            RTL_AVL_TABLE table;
+            list_entry_allocator_type* allocator;
+            entry_deleter deleter;
+            //bool initialized;
+        };
+    }
 }
 
 

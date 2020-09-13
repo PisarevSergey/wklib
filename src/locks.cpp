@@ -2,45 +2,45 @@
 
 wklib::locks::eresource::eresource()
 {
-  ExInitializeResourceLite(&lock);
+    ExInitializeResourceLite(&lock);
 }
 
 wklib::locks::eresource::~eresource()
 {
-  ExDeleteResourceLite(&lock);
+    ExDeleteResourceLite(&lock);
 }
 
 void wklib::locks::eresource::lock_shared()
 {
-  FltAcquireResourceShared(&lock);
+    FltAcquireResourceShared(&lock);
 }
 
 void wklib::locks::eresource::lock_exclusive()
 {
-  FltAcquireResourceExclusive(&lock);
+    FltAcquireResourceExclusive(&lock);
 }
 
 void wklib::locks::eresource::release()
 {
-  FltReleaseResource(&lock);
+    FltReleaseResource(&lock);
 }
 
 wklib::locks::mutex::mutex()
 {
-  KeInitializeMutex(&mtx, 0);
+    KeInitializeMutex(&mtx, 0);
 }
 
 void wklib::locks::mutex::lock()
 {
 #if DBG
-  NTSTATUS acquire_status =
+    NTSTATUS acquire_status =
 #endif
-  KeWaitForMutexObject(&mtx, Executive, KernelMode, FALSE, nullptr);
+        KeWaitForMutexObject(&mtx, Executive, KernelMode, FALSE, nullptr);
 
-  ASSERT(STATUS_SUCCESS == acquire_status);
+    ASSERT(STATUS_SUCCESS == acquire_status);
 }
 
 void wklib::locks::mutex::unlock()
 {
-  KeReleaseMutex(&mtx, FALSE);
+    KeReleaseMutex(&mtx, FALSE);
 }

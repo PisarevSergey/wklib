@@ -2,37 +2,37 @@
 
 namespace wklib
 {
-  namespace refcounted_object
-  {
-    template <typename derived_class, typename deleter = wklib::deleters::default_deleter<derived_class>>
-    class base
+    namespace refcounted_object
     {
-    public:
-      derived_class* reference()
-      {
-        InterlockedIncrement64(&refcount);
-        return static_cast<derived_class*>(this);
-      }
-
-      void dereference()
-      {
-        if (0 == InterlockedDecrement64(&refcount))
+        template <typename derived_class, typename deleter = wklib::deleters::default_deleter<derived_class>>
+        class base
         {
-          deleter_object(static_cast<derived_class*>(this));
-        }
-      }
+        public:
+            derived_class* reference()
+            {
+                InterlockedIncrement64(&refcount);
+                return static_cast<derived_class*>(this);
+            }
 
-      void* operator new(size_t) = delete;
-      void operator delete(void*) = delete;
-    protected:
-      virtual ~base() = 0;
-    private:
-      deleter deleter_object;
-      volatile LONG64 refcount{1};
-    };
+            void dereference()
+            {
+                if (0 == InterlockedDecrement64(&refcount))
+                {
+                    deleter_object(static_cast<derived_class*>(this));
+                }
+            }
 
-    template <typename derived_class, typename deleter>
-    base<derived_class, deleter>::~base()
-    {}
-  }
+            void* operator new(size_t) = delete;
+            void operator delete(void*) = delete;
+        protected:
+            virtual ~base() = 0;
+        private:
+            deleter deleter_object;
+            volatile LONG64 refcount{ 1 };
+        };
+
+        template <typename derived_class, typename deleter>
+        base<derived_class, deleter>::~base()
+        {}
+    }
 }
