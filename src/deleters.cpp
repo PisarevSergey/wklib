@@ -23,3 +23,8 @@ void wklib::deleters::fltmgr_context_deleter::operator()(void* context)
         FltReleaseContext(context);
     }
 }
+
+void wklib::deleters::FltSecurityDescriptor::operator()(PSECURITY_DESCRIPTOR sd) const
+{
+    FltFreeSecurityDescriptor(sd);
+}

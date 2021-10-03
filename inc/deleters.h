@@ -39,5 +39,10 @@ namespace wklib
         public:
             void operator()(void* context);
         };
+
+        struct FltSecurityDescriptor
+        {
+            void operator()(PSECURITY_DESCRIPTOR sd) const;
+        };
     }
 }
