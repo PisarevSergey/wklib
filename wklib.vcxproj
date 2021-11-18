@@ -22,6 +22,7 @@
     <ClInclude Include="inc\aligning.h" />
     <ClInclude Include="inc\avl_list.h" />
     <ClInclude Include="inc\deleters.h" />
+    <ClInclude Include="inc\ecp.h" />
     <ClInclude Include="inc\locks.h" />
     <ClInclude Include="inc\lookaside_list.h" />
     <ClInclude Include="inc\os_version.h" />
@@ -35,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\deleters.cpp" />
+    <ClCompile Include="src\ecp.cpp" />
     <ClCompile Include="src\locks.cpp" />
     <ClCompile Include="src\lookaside_list.cpp" />
     <ClCompile Include="src\os_version.cpp" />
@@ -61,36 +63,40 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <TargetVersion>Windows7</TargetVersion>
+    <TargetVersion>WindowsV6.3</TargetVersion>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <DriverTargetPlatform>Desktop</DriverTargetPlatform>
     <CharacterSet>Unicode</CharacterSet>
+    <_NT_TARGET_VERSION>0x0603</_NT_TARGET_VERSION>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <TargetVersion>Windows7</TargetVersion>
+    <TargetVersion>WindowsV6.3</TargetVersion>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <DriverTargetPlatform>Desktop</DriverTargetPlatform>
     <CharacterSet>Unicode</CharacterSet>
+    <_NT_TARGET_VERSION>0x0603</_NT_TARGET_VERSION>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <TargetVersion>Windows7</TargetVersion>
+    <TargetVersion>WindowsV6.3</TargetVersion>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <DriverTargetPlatform>Desktop</DriverTargetPlatform>
     <CharacterSet>Unicode</CharacterSet>
+    <_NT_TARGET_VERSION>0x0603</_NT_TARGET_VERSION>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <TargetVersion>Windows7</TargetVersion>
+    <TargetVersion>WindowsV6.3</TargetVersion>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <DriverTargetPlatform>Desktop</DriverTargetPlatform>
     <CharacterSet>Unicode</CharacterSet>
+    <_NT_TARGET_VERSION>0x0603</_NT_TARGET_VERSION>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

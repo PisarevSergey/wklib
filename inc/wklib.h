@@ -1,5 +1,6 @@
 #pragma once
 
+#include <initguid.h>
 #include <fltKernel.h>
 #include <ntstrsafe.h>
 #include <ntintsafe.h>
@@ -16,3 +17,4 @@
 #include <pointer_mainpulation.h>
 #include <refconunted_object_base.h>
 #include <lookaside_list.h>
+#include <ecp.h>
